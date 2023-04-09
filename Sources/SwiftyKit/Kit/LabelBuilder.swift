@@ -11,25 +11,25 @@ public final class LabelBuilder: UILabel, ViewBuilderProtocol {
     public var content: UIView { self }
     
     @discardableResult
-    func text(_ text: String?) -> Self {
+    public func text(_ text: String?) -> Self {
         self.text = text
         return self
     }
     
     @discardableResult
-    func textColor(_ textColor: UIColor) -> Self {
+    public func textColor(_ textColor: UIColor) -> Self {
         self.textColor = textColor
         return self
     }
     
     @discardableResult
-    func font(_ font: UIFont) -> Self {
+    public func font(_ font: UIFont) -> Self {
         self.font = font
         return self
     }
     
     @discardableResult
-    func numberOfLines(_ numberOfLines: Int) -> Self {
+    public func numberOfLines(_ numberOfLines: Int) -> Self {
         self.numberOfLines = numberOfLines
         return self
     }
