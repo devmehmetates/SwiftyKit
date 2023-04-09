@@ -9,16 +9,16 @@ import SwiftUI
 
 #if DEBUG
 @available(iOS 13.0, *)
-private struct GenericUIViewRepresentable<ViewType>: UIViewRepresentable where ViewType: UIView {
-    func updateUIView(_ uiView: ViewType, context: Context) { }
+public struct GenericUIViewRepresentable<ViewType>: UIViewRepresentable where ViewType: UIView {
+    public func updateUIView(_ uiView: ViewType, context: Context) { }
     let factory: (Context) -> ViewType
-    func makeUIView(context: Context) -> ViewType { factory(context) }
+    public func makeUIView(context: Context) -> ViewType { factory(context) }
 }
 
 @available(iOS 13.0, *)
-private struct GenericUIViewControllerRepresentable<ViewControllerType>: UIViewControllerRepresentable where ViewControllerType: UIViewController {
-    func updateUIViewController(_ uiViewController: ViewControllerType, context: Context) { }
+public struct GenericUIViewControllerRepresentable<ViewControllerType>: UIViewControllerRepresentable where ViewControllerType: UIViewController {
+    public func updateUIViewController(_ uiViewController: ViewControllerType, context: Context) { }
     let factory: (Context) -> ViewControllerType
-    func makeUIViewController(context: Context) -> ViewControllerType { factory(context) }
+    public func makeUIViewController(context: Context) -> ViewControllerType { factory(context) }
 }
 #endif
