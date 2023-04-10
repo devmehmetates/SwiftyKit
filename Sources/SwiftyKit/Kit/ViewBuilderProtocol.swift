@@ -37,7 +37,7 @@ public extension ViewBuilderProtocol {
     }
     
     @discardableResult
-    func frame(_ width: CGFloat? = nil, _ height: CGFloat? = nil) -> Self {
+    func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> Self {
         self.content.translatesAutoresizingMaskIntoConstraints = false
         if let width {
             content.widthAnchor.constraint(equalToConstant: width).isActive = true
@@ -71,14 +71,14 @@ public extension ViewBuilderProtocol {
     @discardableResult
     func centerHorizontal(_ view: UIView) -> Self {
         self.content.translatesAutoresizingMaskIntoConstraints = false
-        self.content.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.content.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         return self
     }
     
     @discardableResult
     func centerVertical(_ view: UIView) -> Self {
         self.content.translatesAutoresizingMaskIntoConstraints = false
-        self.content.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.content.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         return self
     }
 }
@@ -187,6 +187,20 @@ public extension ViewBuilderProtocol {
 
 // MARK: - Appereance
 public extension ViewBuilderProtocol {
+    @discardableResult
+    func stroke(_ borderWidth: CGFloat = 1, borderColor: UIColor = .blue) -> Self {
+        self.content.layer.borderWidth = borderWidth
+        self.content.layer.borderColor = borderColor.cgColor
+        return self
+    }
+    
+    @discardableResult
+    func cornerRadius(_ radius: CGFloat) -> Self {
+        self.content.layer.cornerRadius = radius
+        self.content.layer.masksToBounds = true
+        return self
+    }
+    
     @discardableResult
     func contentMode(_ contentMode: UIView.ContentMode) -> Self {
         self.content.contentMode = contentMode
