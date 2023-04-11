@@ -1,5 +1,5 @@
 //
-//  TextFieldBuilder.swift
+//  BaseTextField.swift
 //  
 //
 //  Created by Mehmet Ateş on 10.04.2023.
@@ -7,29 +7,10 @@
 
 import UIKit
 
-final class TextFieldBuilder: UITextField, ViewBuilderProtocol, UITextFieldDelegate {
-    var content: UIView { self }
+final class BaseTextField: UITextField, UITextFieldDelegate {
     private var onEdit: ((_ value: String) -> Void)?
     private var onEditBegin: ((_ value: String) -> Void)?
     private var onEditEnd: ((_ value: String) -> Void)?
-    
-    @discardableResult
-    func placeholder(_ placeholder: String) -> Self {
-        self.placeholder = placeholder
-        return self
-    }
-    
-    @discardableResult
-    func textColor(_ textColor: UIColor) -> Self {
-        self.textColor = textColor
-        return self
-    }
-    
-    @discardableResult
-    func font(_ font: UIFont) -> Self {
-        self.font = font
-        return self
-    }
     
     @discardableResult
     func onEdit(_ completion: @escaping (_ text: String) -> Void) -> Self {

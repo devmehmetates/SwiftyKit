@@ -1,5 +1,5 @@
 //
-//  LabelBuilder.swift
+//  UILabel.swift
 //  
 //
 //  Created by Mehmet Ateş on 9.04.2023.
@@ -7,9 +7,7 @@
 
 import UIKit
 
-public final class LabelBuilder: UILabel, ViewBuilderProtocol {
-    public var content: UIView { self }
-    
+extension UILabel {
     @discardableResult
     public func text(_ text: String?) -> Self {
         self.text = text

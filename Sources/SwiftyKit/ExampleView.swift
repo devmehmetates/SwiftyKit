@@ -10,34 +10,10 @@ import SwiftUI
 #if DEBUG
 @available(iOS 13.0, *)
 final class ExampleView: UIViewController {
-    let label = LabelBuilder()
+    let label = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        StackBuilder()
-            .axis(.vertical)
-            .addView(view)
-            .centerToSuperview()
-            .stroke(borderColor: .red)
-            .addArrangedSubviews(
-                ButtonBuilder(type: .system)
-                    .setTitle("Deneme"),
-                StackBuilder()
-                    .addArrangedSubviews(
-                        TextFieldBuilder()
-                            .placeholder("Metin")
-                            .onEdit{ text in
-                                self.label.text(text)
-                            }.onEditEnd{ text in
-                                self.label.text("End")
-                            }.onEditBegin{ text in
-                                self.label.text("Begin")
-                            },
-                        label
-                            .text("Deneme")
-                    )
-            )
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  StackBuilder.swift
+//  UIStackView + Ext.swift
 //  
 //
 //  Created by Mehmet Ateş on 10.04.2023.
@@ -7,20 +7,19 @@
 
 import UIKit
 
-final class StackBuilder: UIStackView, ViewBuilderProtocol {
-    var content: UIView { self }
-
+extension UIStackView {    
     @discardableResult
-    func addArrangedSubview(_ view: ViewBuilderProtocol) -> Self {
-        self.addArrangedSubview(view.content)
+    func addArrangedView(_ view: UIView) -> Self {
+        self.addArrangedSubview(view)
         return self
     }
     
     @discardableResult
-    func addArrangedSubviews(_ views: ViewBuilderProtocol...) -> Self {
-        for view in views {
-            self.addArrangedSubview(view.content)
+    func addArrangedViews(_ views: UIView...) -> Self {
+        views.forEach {
+            self.addArrangedSubview($0)
         }
+       
         return self
     }
     
