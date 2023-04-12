@@ -16,6 +16,17 @@ public extension UIView {
     }
 }
 
+// MARK: - Padding
+public extension UIView {
+    @discardableResult
+    func padding(_ edges: Edges.Set = .all, padding: CGFloat = 16) -> UIView {
+        let view = UIView()
+        view.addSubview(self)
+        self.fillToSuperView(edges, padding)
+        return view
+    }
+}
+
 // MARK: - Frame & Size
 public extension UIView {
     @discardableResult
