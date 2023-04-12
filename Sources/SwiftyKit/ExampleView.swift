@@ -21,6 +21,8 @@ final class ExampleView: UIViewController {
                 UILabel()
                     .text(.exampleText)
                     .numberOfLines(0)
+                    .padding(.horizontal, padding: 50)
+                    .padding(.vertical, padding: 20)
                 UILabel()
                     .text(.exampleText)
                     .numberOfLines(0)
@@ -41,7 +43,7 @@ final class ExampleView: UIViewController {
                 }
                 BaseTextField()
                     .placeholder("Metin")
-            }
+            }.padding()
         }.addView(view)
             .fillToSuperView()
     }
