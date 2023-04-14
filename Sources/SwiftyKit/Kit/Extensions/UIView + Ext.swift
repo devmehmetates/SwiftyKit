@@ -331,6 +331,16 @@ public extension UIView {
 // MARK: - Appereance
 public extension UIView {
     @discardableResult
+    func shadow(_ shadowColor: UIColor = .gray.withAlphaComponent(0.2), radius: CGFloat = 8, offset: CGSize = .zero) -> UIView {
+        self.layer.shadowColor = shadowColor.cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        self.layer.masksToBounds = false
+        return self
+    }
+    
+    @discardableResult
     func stroke(_ borderWidth: CGFloat = 1, borderColor: UIColor = .blue) -> Self {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor.cgColor
@@ -339,8 +349,8 @@ public extension UIView {
     
     @discardableResult
     func cornerRadius(_ radius: CGFloat) -> Self {
-        self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
+        self.layer.cornerRadius = radius
         return self
     }
     
