@@ -15,7 +15,7 @@ final class BaseScrollView: UIScrollView {
         content().forEach { contentView.addArrangedView($0) }
         contentView
             .addView(self)
-            .fillToSuperView(insets, insetPadding)
+            .fillToSuperView(insets, insetPadding, ignoreSafeArea: true)
             .widthToSuperview()
     }
 }
