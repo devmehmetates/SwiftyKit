@@ -135,7 +135,7 @@ public extension UIView {
             case .bottom:
                 self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
             }
         case .bottom:
             switch anchor {
@@ -144,7 +144,7 @@ public extension UIView {
             case .bottom:
                 self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
             }
         case .leading:
             switch anchor {
@@ -153,7 +153,7 @@ public extension UIView {
             case .trailing:
                 self.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
             }
         case .trailing:
             switch anchor {
@@ -162,7 +162,7 @@ public extension UIView {
             case .trailing:
                 self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
             }
         case .horizontal:
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
@@ -171,9 +171,9 @@ public extension UIView {
             self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
             self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
         case .all:
-            print("Unexpected case on adding constraints")
+            debugPrint("Unexpected case on adding constraints")
         default:
-            print("Unexpected case on adding constraints")
+            debugPrint("Unexpected case on adding constraints")
         }
         return self
     }
@@ -190,7 +190,7 @@ public extension UIView {
             case .bottom:
                 self.topAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
             }
         case .bottom:
             switch anchor {
@@ -199,7 +199,7 @@ public extension UIView {
             case .bottom:
                 self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
             }
         case .leading:
             switch anchor {
@@ -208,7 +208,7 @@ public extension UIView {
             case .trailing:
                 self.leadingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
             }
         case .trailing:
             switch anchor {
@@ -217,7 +217,7 @@ public extension UIView {
             case .trailing:
                 self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
             default:
-                print("Unexpected case on adding constraints")
+                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
             }
         case .horizontal:
             self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
