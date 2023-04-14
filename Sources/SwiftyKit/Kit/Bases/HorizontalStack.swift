@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class HorizontalStack: UIStackView {
-    convenience init(@ContentBuilder _ content: () -> [UIView]) {
+public final class HorizontalStack: UIStackView {
+    public convenience init(@ContentBuilder _ content: () -> [UIView]) {
         self.init(frame: .zero)
         self.axis(.horizontal)
         content().forEach { addArrangedView($0) }

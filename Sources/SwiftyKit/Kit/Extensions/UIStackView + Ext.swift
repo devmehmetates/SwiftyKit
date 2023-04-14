@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIStackView {    
+public extension UIStackView {    
     @discardableResult
     func addArrangedView(_ view: UIView) -> Self {
         self.addArrangedSubview(view)

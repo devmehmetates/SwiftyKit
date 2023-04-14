@@ -7,4 +7,4 @@
 
 import UIKit
 
-final class Spacer: UIView {}
+public final class Spacer: UIView {}

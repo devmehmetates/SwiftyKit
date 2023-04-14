@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIButton {
+public extension UIButton {
     @discardableResult
     func setTitle(_ title: String, _ state: UIControl.State = .normal) -> Self {
         self.setTitle(title, for: state)

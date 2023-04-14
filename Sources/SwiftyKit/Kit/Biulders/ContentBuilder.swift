@@ -8,32 +8,32 @@
 import UIKit
 
 @resultBuilder
-final class ContentBuilder {
-    static func buildBlock(_ components: [UIView]...) -> [UIView] {
+public final class ContentBuilder {
+    public static func buildBlock(_ components: [UIView]...) -> [UIView] {
         components.flatMap { $0 }
     }
 
-    static func buildExpression(_ expression: UIView) -> [UIView] {
+    public static func buildExpression(_ expression: UIView) -> [UIView] {
         [expression]
     }
 
-    static func buildExpression(_ expression: [UIView]) -> [UIView] {
+    public static func buildExpression(_ expression: [UIView]) -> [UIView] {
         expression
     }
 
-    static func buildOptional(_ components: [UIView]?) -> [UIView] {
+    public static func buildOptional(_ components: [UIView]?) -> [UIView] {
         components ?? []
     }
 
-    static func buildEither(first components: [UIView]) -> [UIView] {
+    public static func buildEither(first components: [UIView]) -> [UIView] {
         components
     }
 
-    static func buildEither(second components: [UIView]) -> [UIView] {
+    public static func buildEither(second components: [UIView]) -> [UIView] {
         components
     }
 
-    static func buildArray(_ components: [[UIView]]) -> [UIView] {
+    public static func buildArray(_ components: [[UIView]]) -> [UIView] {
         components.flatMap { $0 }
     }
 }

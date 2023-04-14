@@ -11,7 +11,7 @@ public final class BaseButton: UIButton {
     private var didClick: (() -> Void)?
     
     @discardableResult
-    func didClick(_ completion: @escaping () -> Void) -> Self {
+    public func didClick(_ completion: @escaping () -> Void) -> Self {
         self.didClick = completion
         self.addTarget(self, action: #selector(onTap), for: .touchUpInside)
         return self
