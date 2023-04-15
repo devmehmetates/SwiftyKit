@@ -11,6 +11,6 @@ public final class VerticalStack: UIStackView {
     public convenience init(@ContentBuilder _ content: () -> [UIView]) {
         self.init(frame: .zero)
         self.axis(.vertical)
-        content().forEach { addArrangedView($0) }
+        content().lazy.forEach { addArrangedView($0) }
     }
 }
