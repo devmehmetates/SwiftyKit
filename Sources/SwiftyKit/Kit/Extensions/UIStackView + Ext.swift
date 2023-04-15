@@ -40,4 +40,10 @@ public extension UIStackView {
         self.spacing = spacing
         return self
     }
+    
+    @discardableResult
+    func alignment(_ alignment: UIStackView.Alignment) -> Self {
+        self.alignment = alignment
+        return self
+    }
 }
