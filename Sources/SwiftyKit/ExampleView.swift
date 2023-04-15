@@ -10,18 +10,42 @@ import SwiftUI
 #if DEBUG
 @available(iOS 13.0, *)
 final class ExampleView: UIViewController {
+    var images = [
+        "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/downloads/buddyiconsconavatars/v_casino_heist2_256x256.jpg",
+        "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/downloads/buddyiconsconavatars/v_casino_heist3_256x256.jpg",
+        "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/downloads/buddyiconsconavatars/v_doomsdayheist2_256x256.jpg",
+        "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/downloads/buddyiconsconavatars/v_gunrunning_girl_256x256.jpg",
+        "https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/downloads/buddyiconsconavatars/v_halloweensurprise_girl_256x256.jpg"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Deneme"
+        title = "Metin"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = .systemBackground
         view.backgroundColor(.gray.withAlphaComponent(0.1))
         
         BaseScrollView {
             VerticalStack {
-                UIView()
+                UIImageView()
+                    .imageSystemName("applelogo")
+                    .contentMode(.scaleAspectFit)
+                    .padding(.top)
+
+                for (index, image) in images.lazy.enumerated() {
+                    createProfileCard(image, title: "Avatar: \(index)")
+                }
                 
+                BaseTextField()
+                    .placeholder("Metin")
+                    .onEdit { text in
+                        self.title = text
+                    }
+                    .padding(.horizontal)
+                
+                BaseButton(type: .system)
+                    .setTitle("Değiştir")
                 VerticalStack {
                     UILabel()
                         .text("Section Title")
@@ -57,6 +81,64 @@ final class ExampleView: UIViewController {
             }.spacing(20)
         }.addView(view)
             .fillToSuperView()
+    }
+    
+    func createProfileCard(_ image: String, title: String) -> UIView {
+        HorizontalStack {
+            UIImageView()
+                .asyncImage(URL(string: image))
+                .contentMode(.scaleAspectFit)
+                .clipsToBounds(true)
+                .frame(width: 50, height: 50)
+                .backgroundColor(.gray.withAlphaComponent(0.2))
+                .cornerRadius(10)
+            UILabel(title)
+                .textColor(.red)
+                .font(.systemFont(ofSize: 12, weight: .light))
+            Spacer()
+            BaseButton(type: .system)
+                .didClick {
+                    let vc = UIViewController()
+                    vc.view.backgroundColor = .systemBackground
+                    vc.navigationController?.navigationBar.prefersLargeTitles = false
+                    vc.view.backgroundColor(.blue)
+                    UIImageView()
+                        .asyncImage(URL(string: image))
+                        .contentMode(.scaleAspectFill)
+                        .addView(vc.view)
+                        .centerToSuperview()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                .setTitle("Detail")
+                .padding(.horizontal)
+        }.spacing(10)
+            .backgroundColor(.systemBackground)
+            .cornerRadius(10)
+            .shadow()
+            .padding(.horizontal)
+            
+    }
+    
+    func createAdvantageCard(_ image: String) -> UIView {
+        VerticalStack {
+            UIImageView()
+                .asyncImage(URL(string: image))
+                .contentMode(.scaleAspectFill)
+                .clipsToBounds(true)
+            HorizontalStack {
+                UISwitch()
+                Spacer()
+                UILabel()
+                    .text("Avantajı Seç")
+                    .padding(.horizontal)
+            }.alignment(.center)
+                .height(50)
+                .padding(.leading)
+        }.height(200)
+            .cornerRadius(10)
+            .backgroundColor(.systemBackground)
+            .padding(.horizontal)
+            .shadow(offset: CGSize(width: 0, height: 9))
     }
     
     func stackCreator(_ title: String, description: String) -> UIView {
