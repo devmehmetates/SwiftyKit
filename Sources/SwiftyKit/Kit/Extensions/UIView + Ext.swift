@@ -9,6 +9,10 @@ import UIKit
 
 // MARK: - Base
 public extension UIView {
+    /// Adds the receiver view as a subview to the specified view.
+    ///
+    /// - Parameter view: The superview to add the receiver as a subview to.
+    /// - Returns: The modified receiver view.
     @discardableResult
     func addView(_ view: UIView) -> Self {
         view.addSubview(self)
@@ -18,6 +22,12 @@ public extension UIView {
 
 // MARK: - Padding
 public extension UIView {
+    /// Adds padding to the edges of the view.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to which the padding should be applied.
+    ///   - padding: The amount of padding to apply to the edges.
+    /// - Returns: A new `UIView` instance with the original view as a subview and padded edges.
     @discardableResult
     func padding(_ edges: Edges.Set = .all, padding: CGFloat = 16) -> UIView {
         let view = UIView()
@@ -29,6 +39,9 @@ public extension UIView {
 
 // MARK: - Frame & Size
 public extension UIView {
+    /// Constrains the width of the view to be equal to the width of its superview.
+    ///
+    /// - Returns: The modified view instance.
     @discardableResult
     func widthToSuperview() -> Self {
         guard let superview = self.superview else { return self }
@@ -36,7 +49,11 @@ public extension UIView {
         self.widthAnchor.constraint(equalTo: superview.widthAnchor).isActive = true
         return self
     }
-    
+
+    /// Constrains the width of the view to be equal to the given width.
+    ///
+    /// - Parameter width: The width to constrain the view to.
+    /// - Returns: The modified view instance.
     @discardableResult
     func width(_ width: CGFloat) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +61,20 @@ public extension UIView {
         return self
     }
     
+    /// Sets the height of the view to a specific value.
+    ///
+    /// - Parameter height: The height value to set.
+    /// - Returns: The modified view instance.
+    @discardableResult
+    func height(_ height: CGFloat) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        return self
+    }
+
+    /// Sets the height of the view to match its superview's height.
+    ///
+    /// - Returns: The modified view instance.
     @discardableResult
     func heightToSuperview() -> Self {
         guard let superview = self.superview else { return self }
@@ -51,14 +82,12 @@ public extension UIView {
         self.heightAnchor.constraint(equalTo: superview.heightAnchor).isActive = true
         return self
     }
-    
-    @discardableResult
-    func height(_ height: CGFloat) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: height).isActive = true
-        return self
-    }
-    
+
+    /// Sets the frame size of the view.
+    /// - Parameters:
+    ///   - width: The width to set for the view's frame.
+    ///   - height: The height to set for the view's frame.
+    /// - Returns: The modified view instance.
     @discardableResult
     func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +103,10 @@ public extension UIView {
 
 // MARK: - Center
 public extension UIView {
+    /// Centers the view to the given view.
+    ///
+    /// - Parameter view: The view to center to.
+    /// - Returns: The modified view.
     @discardableResult
     func center(_ view: UIView) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +114,10 @@ public extension UIView {
         self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         return self
     }
-    
+
+    /// Centers the view to its superview.
+    ///
+    /// - Returns: The modified view.
     @discardableResult
     func centerToSuperview() -> Self {
         guard let superview = self.superview else { return self }
@@ -91,13 +127,20 @@ public extension UIView {
         return self
     }
     
+    /// Centers the view horizontally to a given view.
+    ///
+    /// - Parameter view: The view to center to.
+    /// - Returns: The view itself.
     @discardableResult
     func centerHorizontal(_ view: UIView) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         return self
     }
-    
+
+    /// Centers the view horizontally to its superview.
+    ///
+    /// - Returns: The view itself.
     @discardableResult
     func centerHorizontalToSuperview() -> Self {
         guard let superview = self.superview else { return self }
@@ -106,6 +149,10 @@ public extension UIView {
         return self
     }
     
+    /// Centers the view vertically to the specified view.
+    ///
+    /// - Parameter view: The view to center to.
+    /// - Returns: The current view instance.
     @discardableResult
     func centerVertical(_ view: UIView) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +160,9 @@ public extension UIView {
         return self
     }
     
+    /// Centers the view vertically to its superview.
+    ///
+    /// - Returns: The current view instance.
     @discardableResult
     func centerVerticalToSuperview() -> Self {
         guard let superview = self.superview else { return self }
@@ -124,8 +174,29 @@ public extension UIView {
 
 // MARK: - Pin actions
 public extension UIView {
+    /// Pins the edges of the current view to the corresponding edges of the specified view with the given padding.
+    ///
+    /// - Parameters:
+    ///   - view: The view to pin to.
+    ///   - edge: The edges of the current view to pin. Only one edge can be specified at a time.
+    ///   - anchor: The edges of the specified view to pin to. Defaults to `.all`.
+    ///   - padding: The amount of padding to apply. Defaults to `0`.
+    ///
+    /// - Warning: Only one edge can be specified at a time, otherwise the constraints won't be set as expected.
+    ///
+    /// - Note: Both views must already be in the view hierarchy before calling this method.
+    ///
+    /// - Returns: The current view instance for chaining.
+    ///
+    /// /// Example usage:
+    /// ```swift
+    /// UILabel("Label Text")
+    ///     .addView(view)
+    ///     .pin(to: view, for: .horizontal)
+    ///
+    /// ```
     @discardableResult
-    func pin(to view: UIView, anchor: Edges.Set = .all, for edge: Edges.Set, padding: CGFloat = 0) -> Self {
+    func pin(to view: UIView, for edge: Edges.Set, anchor: Edges.Set = .all, padding: CGFloat = 0) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         switch edge {
         case .top:
@@ -178,6 +249,26 @@ public extension UIView {
         return self
     }
     
+    /// Pins the edges of the view to its superview's edges.
+    ///
+    /// - Parameters:
+    ///     - anchor: An enum value that determines which edge of the view should be pinned to the superview's edge.
+    ///     - edge: An enum value that determines which edge of the superview the view should be pinned to.
+    ///     - padding: The distance between the view's edge and the superview's edge. Default value is 0.
+    ///
+    /// - Returns: The view that was pinned to the superview's edge.
+    ///
+    /// Use this function to pin a view's edges to its superview's edges. The function adds constraints to the view's layout anchors to ensure it stays attached to its superview's edges even when its superview changes its size.
+    ///
+    /// To use this function, call it on the view you want to pin, and pass in the appropriate parameters:
+    ///
+    ///     UILabel("Label Title").pinToSuperview(anchor: .top, for: .top, padding: 20)
+    ///
+    /// This will pin the top edge of `UILabel` to the top edge of its superview with a padding of 20 points.
+    ///
+    /// - Note: This function assumes that the view has a superview. If it doesn't, the function will simply return the view itself.
+    ///
+    /// - Warning: Be careful when using this function with views that are embedded in a hierarchy of nested views. Pinning a view to its superview's edges may not be the desired layout result in such cases. Consider using a more specific pinning function that allows you to pin to a specific view instead of the superview.
     @discardableResult
     func pinToSuperview(anchor: Edges.Set = .all, for edge: Edges.Set, padding: CGFloat = 0) -> Self {
         guard let superview = self.superview else { return self }
@@ -236,6 +327,15 @@ public extension UIView {
 
 // MARK: - Fill Constraints
 public extension UIView {
+    /// This function is used to attach a given view to another view from all edges, effectively filling the space between them. Optional padding can be added within the edges, and the safe area can be ignored if desired.
+    ///
+    /// - Parameters:
+    ///   - view: The superview to fill the edges within.
+    ///   - edges: The edges to fill. By default, all edges will be filled.
+    ///   - padding: The amount of padding to apply within the edges. By default, no padding is applied.
+    ///   - ignoreSafeArea: Whether to ignore the safe area when filling the edges. By default, the safe area is used.
+    ///
+    /// - Returns: The modified view.
     @discardableResult
     func fill(_ view: UIView, _ edges: Edges.Set = .all,  _ padding: CGFloat = 0, ignoreSafeArea: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -330,6 +430,14 @@ public extension UIView {
         return self
     }
 
+    /// This function is used to attach a given view's edges to its superview, effectively filling the space between them. Optional padding can be added within the edges, and the safe area can be ignored if desired.
+    ///
+    /// - Parameters:
+    ///   - edges: The edges to fill. By default, all edges will be filled.
+    ///   - padding: The amount of padding to apply within the edges. By default, no padding is applied.
+    ///   - ignoreSafeArea: Whether to ignore the safe area when filling the edges. By default, the safe area is used.
+    ///
+    /// - Returns: The modified view.
     @discardableResult
     func fillToSuperView(_ edges: Edges.Set = .all, _ padding: CGFloat = 0, ignoreSafeArea: Bool = false) -> Self {
         guard let superview = self.superview else { return self }
@@ -428,6 +536,14 @@ public extension UIView {
 
 // MARK: - Appereance
 public extension UIView {
+    /// This function applies a shadow effect to a view's layer.
+    ///
+    /// - Parameters:
+    ///   - shadowColor: The color of the shadow. The default value is gray with an alpha component of 0.2.
+    ///   - radius: The radius of the shadow. The default value is 8.
+    ///   - offset: The offset of the shadow. The default value is zero.
+    ///
+    /// - Returns: The modified view.
     @discardableResult
     func shadow(_ shadowColor: UIColor = .gray.withAlphaComponent(0.2), radius: CGFloat = 8, offset: CGSize = .zero) -> UIView {
         self.layer.shadowColor = shadowColor.cgColor
@@ -438,6 +554,13 @@ public extension UIView {
         return self
     }
     
+    /// Applies a stroke effect to the view.
+    ///
+    /// - Parameters:
+    ///   - borderWidth: The width of the stroke border. Default value is 1.
+    ///   - borderColor: The color of the stroke border. Default value is blue.
+    ///
+    /// - Returns: The modified view.
     @discardableResult
     func stroke(_ borderWidth: CGFloat = 1, borderColor: UIColor = .blue) -> Self {
         self.layer.borderWidth = borderWidth
@@ -445,6 +568,10 @@ public extension UIView {
         return self
     }
     
+    /// Applies a corner radius to the view.
+    ///
+    /// - Parameter radius: The radius of the view's corners.
+    /// - Returns: The modified view.
     @discardableResult
     func cornerRadius(_ radius: CGFloat) -> Self {
         self.layer.masksToBounds = true
@@ -452,30 +579,50 @@ public extension UIView {
         return self
     }
     
+    /// Sets the content mode of the view.
+    ///
+    /// - Parameter contentMode: The content mode to set.
+    /// - Returns: The modified view.
     @discardableResult
     func contentMode(_ contentMode: UIView.ContentMode) -> Self {
         self.contentMode = contentMode
         return self
     }
-    
+
+    /// Sets the tint color of the view.
+    ///
+    /// - Parameter tintColor: The tint color to set.
+    /// - Returns: The modified view.
     @discardableResult
     func tintColor(_ tintColor: UIColor) -> Self {
         self.tintColor = tintColor
         return self
     }
-    
+
+    /// Sets the background color of the view.
+    ///
+    /// - Parameter color: The background color to set.
+    /// - Returns: The modified view.
     @discardableResult
     func backgroundColor(_ color: UIColor) -> Self {
         self.backgroundColor = color
         return self
     }
-    
+
+    /// Sets the clips to bounds property of the view.
+    ///
+    /// - Parameter clipsToBounds: The boolean value to set the clips to bounds property to.
+    /// - Returns: The modified view.
     @discardableResult
     func clipsToBounds(_ clipsToBounds: Bool) -> Self {
         self.clipsToBounds = clipsToBounds
         return self
     }
-    
+
+    /// Sets the transform property of the view.
+    ///
+    /// - Parameter transform: The transform to set.
+    /// - Returns: The modified view.
     @discardableResult
     func transform(_ transform: CGAffineTransform) -> Self {
         self.transform = transform
