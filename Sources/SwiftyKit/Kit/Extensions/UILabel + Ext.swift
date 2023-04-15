@@ -8,6 +8,11 @@
 import UIKit
 
 public extension UILabel {
+    convenience init(_ text: String?) {
+        self.init()
+        self.text = text
+    }
+    
     @discardableResult
     func text(_ text: String?) -> Self {
         self.text = text
