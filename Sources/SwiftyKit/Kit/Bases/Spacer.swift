@@ -7,4 +7,15 @@
 
 import UIKit
 
+/// A view that acts as a flexible spacer between two views in a stack view.
+///
+/// Example usage:
+/// ```swift
+/// HorizontalStack {
+///     UILabel("First Label")
+///     Spacer()
+///     UILabel("Third Label")
+/// }
+/// ```
 public final class Spacer: UIView {}
+
