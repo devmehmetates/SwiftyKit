@@ -76,6 +76,10 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIView%20%2B%20Ext.swift#L612"><p>func clipsToBounds(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIView%20%2B%20Ext.swift#L622"><p>func transform(_ :)</p></a>
 - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift">UITextField</a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseTextField.swift#L10">BaseTextField</a>
+        - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseTextField.swift#L37"><p>func onEdit(_ :)</p></a>
+        - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseTextField.swift#L48"><p>func onEditBegin(_ :)</p></a>
+        - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseTextField.swift#L59"><p>func onEditEnd(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L13"><p>func text(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L23"><p>func attributedText(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L33"><p>func placeholder(_ :)</p></a>
