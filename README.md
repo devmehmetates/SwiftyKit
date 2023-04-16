@@ -75,6 +75,27 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIView%20%2B%20Ext.swift#L602"><p>func backgroundColor(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIView%20%2B%20Ext.swift#L612"><p>func clipsToBounds(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIView%20%2B%20Ext.swift#L622"><p>func transform(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift">UITextField</a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L13"><p>func text(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L23"><p>func attributedText(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L33"><p>func placeholder(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L43"><p>func attributedPlaceholder(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L53"><p>func textColor(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L63"><p>func textAlignment(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L73"><p>func font(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L83"><p>func borderStyle(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L93"><p>func adjustsFontSizeToFitWidth(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L103"><p>func minimumFontSize(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L113"><p>func background(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L123"><p>func disabledBackground(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L133"><p>func leftView(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L143"><p>func leftViewMode(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L153"><p>func rightView(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L163"><p>func rightViewMode(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L173"><p>func inputView(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L183"><p>func inputAccessoryView(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L193"><p>func clearsOnInsertion(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UITextField%20%2B%20Ext.swift#L203"><p>func clearsOnBeginEditing(_ :)</p></a>
 
 ## Contributing
 If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome.
