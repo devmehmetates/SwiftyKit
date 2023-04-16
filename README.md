@@ -122,6 +122,13 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UILabel%20%2B%20Ext.swift#L91"><p>func highlightedTextColor(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UILabel%20%2B%20Ext.swift#L102"><p>func adjustsFontSizeToFitWidth(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UILabel%20%2B%20Ext.swift#L112"><p>func minimumScaleFactor(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift"><p>UIImageView</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L13"><p>func image(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L23"><p>func imageSystemName(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L34"><p>func imageNamed(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L44"><p>func asyncImage(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L63"><p>func imageTintColor(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L75"><p>func imageRenderingMode(_ :)</p></a>
 ## Contributing
 If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome.
 
