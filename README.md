@@ -129,6 +129,18 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L44"><p>func asyncImage(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L63"><p>func imageTintColor(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIImage%20%2B%20Ext.swift#L75"><p>func imageRenderingMode(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift"><p>UIButton</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseButton.swift"><p>BaseButton</p></a> 
+        - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseButton.swift#L27"><p>func didClick(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L13"><p>func setTitle(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L25"><p>func setTitleColor(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L37"><p>func setAttributedTitle(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L49"><p>func setImage(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L61"><p>func setBackgroundImage(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L73"><p>func setTitleFont(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L83"><p>func setTitleAlignment(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L93"><p>func setTitleNumberOfLines(_ :)</p></a>
+
 ## Contributing
 If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome.
 
