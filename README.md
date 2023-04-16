@@ -140,6 +140,12 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L73"><p>func setTitleFont(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L83"><p>func setTitleAlignment(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L93"><p>func setTitleNumberOfLines(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UISwitch%20%2B%20Ext.swift"><p>UISwitch</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseSwitch.swift"><p>BaseSwitch</p></a> 
+        - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseSwitch.swift#L23"><p>func didValueChanged(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UISwitch%20%2B%20Ext.swift#L13"><p>func onTintColor(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UISwitch%20%2B%20Ext.swift#L23"><p>func thumbTintColor(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UISwitch%20%2B%20Ext.swift#L33"><p>func setValue(_ :)</p></a>
 - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseScrollView.swift"><p>BaseScrollView</p></a>
 
 ## Helpers & Utils
