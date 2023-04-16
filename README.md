@@ -140,6 +140,20 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L73"><p>func setTitleFont(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L83"><p>func setTitleAlignment(_ :)</p></a>
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Extensions/UIButton%20%2B%20Ext.swift#L93"><p>func setTitleNumberOfLines(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Bases/BaseScrollView.swift"><p>BaseScrollView</p></a>
+
+## Helpers & Utils
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift"><p>ContentBuilder</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L14"><p>static func buildBlock(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L22"><p>static func buildExpression(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L30"><p>static func buildExpression(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L38"><p>static func buildOptional(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L46"><p>static func buildEither(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L54"><p>static func buildEither(_ :)</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Builders/ContentBuilder.swift#L62"><p>static func buildArray(_ :)</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Kit/Enums/Edges.swift"><p>Edges</p></a>
+- <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Utils/EdgesHelper.swift"><p>EdgesHelper</p></a>
+    - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Utils/EdgesHelper.swift#L12"><p>static func edgeInsets(_ :)</p></a> 
 
 ## Contributing
 If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome.
