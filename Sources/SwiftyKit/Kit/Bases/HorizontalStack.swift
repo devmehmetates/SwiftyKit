@@ -24,6 +24,8 @@ public final class HorizontalStack: UIStackView {
     public convenience init(@ContentBuilder _ content: () -> [UIView]) {
         self.init(frame: .zero)
         self.axis(.horizontal)
+        self.alignment(.center)
+        self.spacing(10)
         content().lazy.forEach { addArrangedView($0) }
     }
 }
