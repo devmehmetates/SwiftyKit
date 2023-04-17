@@ -36,7 +36,7 @@ final class ExampleView: UIViewController {
                     }.frame(width: 90.0.responsiveW)
                         .distribution(.equalSpacing)
                 }
-            }
+            }.padding()
         }.addView(view)
             .fillToSuperView()
     }
