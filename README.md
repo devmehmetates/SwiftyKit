@@ -165,7 +165,7 @@ final class ExampleView: UIViewController {
     - <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/Sources/SwiftyKit/Utils/EdgesHelper.swift#L12"><p>static func edgeInsets(_ :)</p></a> 
 
 ## Contributing
-If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome.
+If you find a bug or have a feature request, please open an issue on the GitHub repository. Pull requests are also welcome. Also you can check <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/CONTRIBUTING.md">here</a>.
 
 ## License
 SwiftyKit is released under the Apache License. See <a href="https://github.com/devmehmetates/SwiftyKit/blob/main/LICENSE">LICENSE</a> for more information.
