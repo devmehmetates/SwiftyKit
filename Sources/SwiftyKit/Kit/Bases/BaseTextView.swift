@@ -85,4 +85,3 @@ extension BaseTextView: UITextViewDelegate {
         onEditBegin?(textView.text ?? "")
     }
 }
-
