@@ -1,5 +1,5 @@
 //
-//  Spacer.swift
+//  SpaceView.swift
 //  
 //
 //  Created by Mehmet Ateş on 12.04.2023.
@@ -17,5 +17,5 @@ import UIKit
 ///     UILabel("Third Label")
 /// }
 /// ```
-open class Spacer: UIView {}
+open class SpaceView: UIView {}
 

@@ -5,7 +5,7 @@
 //  Created by Mehmet Ateş on 9.04.2023.
 //
 
-import UIKit
+import SwiftUI
 
 // MARK: - Base
 public extension UIView {
@@ -24,9 +24,19 @@ public extension UIView {
     ///
     /// - Parameter view: The superview to add the receiver as a subview to.
     /// - Returns: The modified receiver view.
+    @discardableResult
     func embedTo(_ view: UIView) -> Self {
         view.addSubview(self)
         return self
+    }
+}
+
+@available(iOS 13.0, *)
+public extension UIView {
+    @ViewBuilder func swiftUIView() -> some View {
+        GenericUIViewRepresentable { _ in
+            self
+        }
     }
 }
 
