@@ -18,39 +18,40 @@ struct ExampleView_Previews: PreviewProvider {
 }
 
 @available(iOS 13.0, *)
-final class ExampleView: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Navigation Title"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        createView()
-    }
-    
-    func createView() {
+final class ExampleView: SwiftyViewController {
+    override var content: UIView {
         BaseScrollView {
             VerticalStack {
                 for _ in 0...10 {
                     HorizontalStack {
                         createCardRow("Row", image: "https://picsum.photos/200")
                         createCardRow("Row", image: "https://picsum.photos/200")
+                        
                     }.frame(width: 90.0.responsiveW)
                         .distribution(.equalSpacing)
                 }
             }.padding()
-        }.embedTo(view)
-            .fillToSuperView()
+        }
     }
-    
+
     private func createCardRow(_ title: String, image: String) -> UIView {
-        VerticalStack {
+        lazy var label = UILabel("History")
+            .font(.boldSystemFont(ofSize: 15))
+        
+        return VerticalStack {
             UIImageView()
                 .asyncImage(URL(string: image))
                 .contentMode(.scaleAspectFill)
                 .cornerRadius(8)
                 .clipsToBounds(true)
             
-            UILabel("History")
-                .font(.boldSystemFont(ofSize: 15))
+            BaseButton(type: .system)
+                .setTitle("Update Label")
+                .didClick {
+                    label.text = "Updated"
+                }
+            
+            label
         }.padding()
             .backgroundColor(.systemBackground)
             .cornerRadius(10)
