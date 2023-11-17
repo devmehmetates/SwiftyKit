@@ -24,39 +24,53 @@ final class ExampleView: SwiftyViewController {
             VerticalStack {
                 for _ in 0...10 {
                     HorizontalStack {
-                        createCardRow("Row", image: "https://picsum.photos/200")
-                        createCardRow("Row", image: "https://picsum.photos/200")
-                        
+                        CardView(image: "https://picsum.photos/200")
+                        CardView(image: "https://picsum.photos/200")
+                        CardView(image: "https://picsum.photos/200")
                     }.frame(width: 90.0.responsiveW)
-                        .distribution(.equalSpacing)
+                        .distribution(.fillEqually)
                 }
             }.padding()
         }
     }
+}
 
-    private func createCardRow(_ title: String, image: String) -> UIView {
-        lazy var label = UILabel("History")
-            .font(.boldSystemFont(ofSize: 15))
+@available(iOS 13.0, *)
+final class CardView: UIView {
+    private lazy var label = UILabel("History")
+        .font(.boldSystemFont(ofSize: 16))
+    
+    convenience init(image: String) {
+        self.init(frame: .zero)
         
-        return VerticalStack {
+        VerticalStack {
             UIImageView()
                 .asyncImage(URL(string: image))
-                .contentMode(.scaleAspectFill)
+                .contentMode(.scaleAspectFit)
                 .cornerRadius(8)
                 .clipsToBounds(true)
             
             BaseButton(type: .system)
-                .setTitle("Update Label")
-                .didClick {
-                    label.text = "Updated"
+                .setTitle("Update")
+                .didClick { [weak self] in
+                    self?.label.text = "Updated"
                 }
             
             label
         }.padding()
             .backgroundColor(.systemBackground)
             .cornerRadius(10)
-            .shadow()
-            .frame(width: 45.0.responsiveW, height: 50.responsiveW)
+            .shadow().embedTo(self)
+            .fillToSuperView()
+            .frame(height: 50.responsiveW)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 #endif
