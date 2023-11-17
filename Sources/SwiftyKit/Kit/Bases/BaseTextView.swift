@@ -23,7 +23,7 @@ import UIKit
 ///         print("Text editing ended: \(text)")
 ///     }
 /// ```
-public final class BaseTextView: UITextView {
+open class BaseTextView: UITextView {
     
     /// The closure that will be called when the text view's text changes.
     private var onEdit: ((_ value: String) -> Void)?

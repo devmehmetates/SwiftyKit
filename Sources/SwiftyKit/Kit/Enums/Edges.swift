@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 /// An enum representing the edges of a rectangle or a view.
-public enum Edges: Int8, CaseIterable {
+@frozen public enum Edges: Int8, CaseIterable {
     case top
     case leading
     case bottom

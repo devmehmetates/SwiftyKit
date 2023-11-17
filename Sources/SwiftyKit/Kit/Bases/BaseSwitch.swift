@@ -16,7 +16,7 @@ import UIKit
 ///         print("Switch value changed to \(value)")
 ///     }
 /// ```
-public final class BaseSwitch: UISwitch {
+open class BaseSwitch: UISwitch {
     
     private var didValueChanged: ((_ value: Bool) -> Void)?
 

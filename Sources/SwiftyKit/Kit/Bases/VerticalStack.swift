@@ -17,7 +17,7 @@ import UIKit
 ///     UILabel("Third Label")
 /// }
 /// ```
-public final class VerticalStack: UIStackView {
+open class VerticalStack: UIStackView {
     
     /// Initializes a new instance of `VerticalStack` with the given subviews.
     ///

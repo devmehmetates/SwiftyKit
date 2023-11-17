@@ -17,5 +17,5 @@ import UIKit
 ///     UILabel("Third Label")
 /// }
 /// ```
-public final class Spacer: UIView {}
+open class Spacer: UIView {}
 

@@ -29,7 +29,7 @@ import UIKit
 ///     }
 /// }
 /// ```
-public final class BaseScrollView: UIScrollView {
+open class BaseScrollView: UIScrollView {
     
     /// The stack view that will hold the content.
     private let contentView = VerticalStack()

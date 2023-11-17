@@ -37,7 +37,7 @@ final class ExampleView: UIViewController {
                         .distribution(.equalSpacing)
                 }
             }.padding()
-        }.addView(view)
+        }.embedTo(view)
             .fillToSuperView()
     }
     
@@ -46,13 +46,16 @@ final class ExampleView: UIViewController {
             UIImageView()
                 .asyncImage(URL(string: image))
                 .contentMode(.scaleAspectFill)
-                .frame(width: 35.0.responsiveW, height: 35.0.responsiveW)
+                .cornerRadius(8)
+                .clipsToBounds(true)
+            
             UILabel("History")
                 .font(.boldSystemFont(ofSize: 15))
         }.padding()
             .backgroundColor(.systemBackground)
             .cornerRadius(10)
             .shadow()
+            .frame(width: 45.0.responsiveW, height: 50.responsiveW)
     }
 }
 #endif

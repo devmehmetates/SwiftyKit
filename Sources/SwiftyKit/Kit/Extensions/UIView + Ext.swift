@@ -14,7 +14,17 @@ public extension UIView {
     /// - Parameter view: The superview to add the receiver as a subview to.
     /// - Returns: The modified receiver view.
     @discardableResult
+    @available(*, deprecated, renamed: "embedTo", message: "")
     func addView(_ view: UIView) -> Self {
+        view.addSubview(self)
+        return self
+    }
+    
+    /// Adds the receiver view as a subview to the specified view.
+    ///
+    /// - Parameter view: The superview to add the receiver as a subview to.
+    /// - Returns: The modified receiver view.
+    func embedTo(_ view: UIView) -> Self {
         view.addSubview(self)
         return self
     }
@@ -39,6 +49,17 @@ public extension UIView {
 
 // MARK: - Frame & Size
 public extension UIView {
+    /// Constrains the width of the view to be equal to the given width.
+    ///
+    /// - Parameter width: The width to constrain the view to.
+    /// - Returns: The modified view instance.
+    @discardableResult
+    func width(_ width: CGFloat) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.widthAnchor.constraint(equalToConstant: width).isActive = true
+        return self
+    }
+
     /// Constrains the width of the view to be equal to the width of its superview.
     ///
     /// - Returns: The modified view instance.
@@ -50,17 +71,6 @@ public extension UIView {
         return self
     }
 
-    /// Constrains the width of the view to be equal to the given width.
-    ///
-    /// - Parameter width: The width to constrain the view to.
-    /// - Returns: The modified view instance.
-    @discardableResult
-    func width(_ width: CGFloat) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        return self
-    }
-    
     /// Sets the height of the view to a specific value.
     ///
     /// - Parameter height: The height value to set.
@@ -90,13 +100,8 @@ public extension UIView {
     /// - Returns: The modified view instance.
     @discardableResult
     func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        if let width {
-            self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        if let height {
-            self.heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
+        if let width { self.width(width) }
+        if let height { self.height(height) }
         return self
     }
 }
@@ -121,9 +126,7 @@ public extension UIView {
     @discardableResult
     func centerToSuperview() -> Self {
         guard let superview = self.superview else { return self }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
-        self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
+        center(superview)
         return self
     }
     
@@ -144,8 +147,7 @@ public extension UIView {
     @discardableResult
     func centerHorizontalToSuperview() -> Self {
         guard let superview = self.superview else { return self }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
+        centerHorizontal(superview)
         return self
     }
     
@@ -166,8 +168,7 @@ public extension UIView {
     @discardableResult
     func centerVerticalToSuperview() -> Self {
         guard let superview = self.superview else { return self }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
+        centerVertical(superview)
         return self
     }
 }
@@ -200,53 +201,56 @@ public extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         switch edge {
         case .top:
-            switch anchor {
-            case .top:
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-            case .bottom:
-                self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            default:
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-            }
+            pinTop(to: view, anchor: anchor, padding: padding)
         case .bottom:
-            switch anchor {
-            case .top:
-                self.bottomAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-            case .bottom:
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            default:
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            }
+            pinBottom(to: view, anchor: anchor, padding: padding)
         case .leading:
-            switch anchor {
-            case .leading:
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-            case .trailing:
-                self.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-            default:
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-            }
+            pinLeading(to: view, anchor: anchor, padding: padding)
         case .trailing:
-            switch anchor {
-            case .leading:
-                self.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-            case .trailing:
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-            default:
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-            }
+            pinTrailing(to: view, anchor: anchor, padding: padding)
         case .horizontal:
-            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-            self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
+            pinLeading(to: view, anchor: .leading, padding: padding)
+            pinTrailing(to: view, anchor: .trailing, padding: padding)
         case .vertical:
-            self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-        case .all:
-            debugPrint("Unexpected case on adding constraints")
+            pinTop(to: view, anchor: .top, padding: padding)
+            pinBottom(to: view, anchor: .bottom, padding: padding)
         default:
             debugPrint("Unexpected case on adding constraints")
         }
         return self
+    }
+    
+    fileprivate func pinTop(to view: UIView, anchor: Edges.Set, padding: CGFloat) {
+        switch anchor {
+        case .top:
+            self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
+        default:
+            self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: padding).isActive = true
+        }
+    }
+    fileprivate func pinBottom(to view: UIView, anchor: Edges.Set, padding: CGFloat) {
+        switch anchor {
+        case .bottom:
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
+        default:
+            self.bottomAnchor.constraint(equalTo: view.topAnchor, constant: -padding).isActive = true
+        }
+    }
+    fileprivate func pinLeading(to view: UIView, anchor: Edges.Set, padding: CGFloat) {
+        switch anchor {
+        case .leading:
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
+        default:
+            self.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: padding).isActive = true
+        }
+    }
+    fileprivate func pinTrailing(to view: UIView, anchor: Edges.Set, padding: CGFloat) {
+        switch anchor {
+        case .trailing:
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
+        default:
+            self.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: -padding).isActive = true
+        }
     }
     
     /// Pins the edges of the view to its superview's edges.
@@ -272,55 +276,7 @@ public extension UIView {
     @discardableResult
     func pinToSuperview(anchor: Edges.Set = .all, for edge: Edges.Set, padding: CGFloat = 0) -> Self {
         guard let superview = self.superview else { return self }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        switch edge {
-        case .top:
-            switch anchor {
-            case .top:
-                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-            case .bottom:
-                self.topAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            default:
-                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-            }
-        case .bottom:
-            switch anchor {
-            case .top:
-                self.bottomAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-            case .bottom:
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            default:
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            }
-        case .leading:
-            switch anchor {
-            case .leading:
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-            case .trailing:
-                self.leadingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-            default:
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-            }
-        case .trailing:
-            switch anchor {
-            case .leading:
-                self.trailingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-            case .trailing:
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-            default:
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-            }
-        case .horizontal:
-            self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-            self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-        case .vertical:
-            self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-            self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-        case .all:
-            print("Unexpected case on adding constraints")
-        default:
-            print("Unexpected case on adding constraints")
-        }
+        pin(to: superview, for: edge, anchor: anchor, padding: padding)
         return self
     }
 }
@@ -339,94 +295,23 @@ public extension UIView {
     @discardableResult
     func fill(_ view: UIView, _ edges: Edges.Set = .all,  _ padding: CGFloat = 0, ignoreSafeArea: Bool = false) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
-        switch edges {
-        case .top:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .bottom:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        case .leading:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .trailing:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .horizontal:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .vertical:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        case .all:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        default:
-            print("Unexpected case on adding constraints")
+        let leadingPadding: CGFloat = (edges == .leading || edges == .horizontal || edges == .all) ? padding : .zero
+        let tralingPadding: CGFloat = (edges == .trailing || edges == .horizontal || edges == .all) ? -padding : .zero
+        let topPadding: CGFloat = (edges == .top || edges == .vertical || edges == .all) ? padding : .zero
+        let bottomPadding: CGFloat = (edges == .bottom || edges == .vertical || edges == .all) ? -padding : .zero
+        
+        if ignoreSafeArea {
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingPadding).isActive = true
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: tralingPadding).isActive = true
+            self.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding).isActive = true
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomPadding).isActive = true
+        } else {
+            self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingPadding).isActive = true
+            self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: tralingPadding).isActive = true
+            self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding).isActive = true
+            self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomPadding).isActive = true
         }
+
         return self
     }
 
@@ -441,95 +326,7 @@ public extension UIView {
     @discardableResult
     func fillToSuperView(_ edges: Edges.Set = .all, _ padding: CGFloat = 0, ignoreSafeArea: Bool = false) -> Self {
         guard let superview = self.superview else { return self }
-        self.translatesAutoresizingMaskIntoConstraints = false
-        switch edges {
-        case .top:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .bottom:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        case .leading:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .trailing:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .horizontal:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            }
-        case .vertical:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        case .all:
-            if ignoreSafeArea {
-                self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
-            } else {
-                self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor, constant: padding).isActive = true
-                self.trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor, constant: -padding).isActive = true
-                self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
-                self.bottomAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
-            }
-        default:
-            print("Unexpected case on adding constraints")
-        }
+        fill(superview, edges, padding, ignoreSafeArea: ignoreSafeArea)
         return self
     }
 }

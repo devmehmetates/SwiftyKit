@@ -19,7 +19,7 @@ import UIKit
 ///     .setTitle("Button Title")
 ///     .padding(.horizontal)
 /// ```
-public final class BaseButton: UIButton {
+open class BaseButton: UIButton {
     
     /// The closure that will be called when the button is clicked.
     private var didClick: (() -> Void)?
