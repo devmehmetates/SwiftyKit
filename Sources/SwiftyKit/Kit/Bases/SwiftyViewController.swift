@@ -7,14 +7,14 @@
 
 import UIKit
 
-public protocol SwiftyViewControllerInferface {
+public protocol SwiftyViewInferface {
     var content: UIView { get }
     func reDraw()
     func cleanDrawed()
     func draw()
 }
 
-public extension SwiftyViewControllerInferface where Self: UIViewController {
+public extension SwiftyViewInferface where Self: UIViewController {
     func reDraw() {
         cleanDrawed()
         draw()
@@ -32,8 +32,9 @@ public extension SwiftyViewControllerInferface where Self: UIViewController {
     }
 }
 
-open class SwiftyViewController: UIViewController, SwiftyViewControllerInferface {
+open class SwiftyViewController: UIViewController, SwiftyViewInferface {
     public var content: UIView { view }
+
     open override func viewDidLoad() {
         super.viewDidLoad()
         draw()

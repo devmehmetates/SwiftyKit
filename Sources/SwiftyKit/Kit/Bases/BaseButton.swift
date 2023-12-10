@@ -31,7 +31,7 @@ open class BaseButton: UIButton {
     @discardableResult
     public func didClick(_ completion: @escaping () -> Void) -> Self {
         self.didClick = completion
-        self.addTarget(self, action: #selector(onTap), for: .touchUpInside)
+        self.addTarget(self, action: #selector(onTap), for: .primaryActionTriggered)
         return self
     }
     

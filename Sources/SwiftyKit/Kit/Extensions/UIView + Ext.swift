@@ -14,7 +14,7 @@ public extension UIView {
     /// - Parameter view: The superview to add the receiver as a subview to.
     /// - Returns: The modified receiver view.
     @discardableResult
-    @available(*, deprecated, renamed: "embedTo", message: "")
+    @available(*, deprecated, renamed: "embedTo", message: "Please use instead this method `embedTo`")
     func addView(_ view: UIView) -> Self {
         view.addSubview(self)
         return self
