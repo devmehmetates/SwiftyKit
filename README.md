@@ -40,19 +40,27 @@ final class ExampleView: SwiftyViewController {
     }
 }
 
-final class CardView: UIView {
+@available(iOS 13.0, *)
+final class CardView: SwiftyView {
     private lazy var label = UILabel("History")
         .font(.boldSystemFont(ofSize: 16))
+    var image: String?
     
     convenience init(image: String) {
-        self.init(frame: .zero)
-        
+        self.init()
+        self.image = image
+        reDraw()
+    }
+
+    override var content: UIView {
         VerticalStack {
-            UIImageView()
-                .asyncImage(URL(string: image))
-                .contentMode(.scaleAspectFit)
-                .cornerRadius(8)
-                .clipsToBounds(true)
+            if let image {
+                UIImageView()
+                    .asyncImage(URL(string: image))
+                    .contentMode(.scaleAspectFit)
+                    .cornerRadius(8)
+                    .clipsToBounds(true)
+            }
             
             BaseButton(type: .system)
                 .setTitle("Update")
@@ -64,17 +72,8 @@ final class CardView: UIView {
         }.padding()
             .backgroundColor(.systemBackground)
             .cornerRadius(10)
-            .shadow().embedTo(self)
-            .fillToSuperView()
+            .shadow()
             .frame(height: 50.responsiveW)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 ```
