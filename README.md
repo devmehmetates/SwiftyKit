@@ -1,6 +1,6 @@
 # SwiftyKit
 
-![Slide 16_9 - 3](https://user-images.githubusercontent.com/74152011/232314158-24375781-6065-4948-9662-3863e8366bac.png)
+![Slide 16_9 - 3](https://github.com/devmehmetates/SwiftyKit/assets/74152011/d7ed677c-4550-450f-b5d0-f67c819c0586)
 
 
 SwiftyKit is a Swift package that provides a collection of useful extensions and utilities for iOS app development. It includes extensions for UIKit classes like **UIView, UILabel, UIButton,** and more, as well as some useful utility functions.
