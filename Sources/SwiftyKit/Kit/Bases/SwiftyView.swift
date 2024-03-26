@@ -26,8 +26,8 @@ public extension SwiftyViewInferface where Self: UIView {
 }
 
 open class SwiftyView: UIView, SwiftyViewInferface {
-    public var content: UIView { self }
-    
+    open var content: UIView { self }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         draw()
